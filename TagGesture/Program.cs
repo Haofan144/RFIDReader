@@ -14,7 +14,8 @@ using System.Collections.Generic;
 using System.Threading;
 using DopplerVisualization;
 using System.Windows.Forms;
-
+using System.Net;
+using System.Net.Sockets;
 
 
 namespace TagGesture
@@ -45,39 +46,45 @@ namespace TagGesture
         static double SpecifiedTx = 30;
 
         //static List<int> list = new List<int>();
-        static int IncomingTagNumber93 = 0;
-        static List<int> TagList93 = new List<int>();
+        static int IncomingTagNumber30 = 0;
+        static List<int> TagList30 = new List<int>();
         //static ArrayList TagList93 = new ArrayList();
-        static int IncomingTagNumber70 = 0;
-        static List<int> TagList70 = new List<int>();
-        static int IncomingTagNumber96 = 0;
-        static List<int> TagList96 = new List<int>();
-        static int IncomingTagNumber73 = 0;
-        static List<int> TagList73 = new List<int>();
+        static int IncomingTagNumber37 = 0;
+        static List<int> TagList37 = new List<int>();
+        static int IncomingTagNumber59 = 0;
+        static List<int> TagList59 = new List<int>();
+        static int IncomingTagNumber25 = 0;
+        static List<int> TagList25 = new List<int>();
+        static int IncomingTagNumber44 = 0;
+        static List<int> TagList44 = new List<int>();
+        static int IncomingTagNumber51 = 0;
+        static List<int> TagList51 = new List<int>();
+        static int IncomingTagNumber16 = 0;
+        static List<int> TagList16 = new List<int>();
+        static int IncomingTagNumber60 = 0;
+        static List<int> TagList60 = new List<int>();
 
-        static int IncomingPieceNumber74 = 0;
-        static List<int> PieceList74 = new List<int>();
-        static int IncomingPieceNumber75 = 0;
-        static List<int> PieceList75 = new List<int>();
 
 
         static void InitTagsEPC()
         {
-            TagsEPC.Add("0000 0000 0000 0000 0000 0093", 1);
-            TagsEPC.Add("0000 0000 0000 0000 0000 0096", 2);
-            TagsEPC.Add("0000 0000 0000 0000 0000 0070", 3);
-            TagsEPC.Add("0000 0000 0000 0000 0000 0073", 4);
-            TagsEPC.Add("0000 0000 0000 0000 0000 0074", 5);
-            TagsEPC.Add("0000 0000 0000 0000 0000 0075", 6);
-            //TagNames.Add("0001");
+            TagsEPC.Add("0000 0000 0000 0000 0000 0030", 1);
+            TagsEPC.Add("0000 0000 0000 0000 0000 0037", 2);
+            TagsEPC.Add("0000 0000 0000 0000 0000 0059", 3);
+            TagsEPC.Add("0000 0000 0000 0000 0000 0025", 4);
+            TagsEPC.Add("0000 0000 0000 0000 0000 0044", 5);
+            TagsEPC.Add("0000 0000 0000 0000 0000 0051", 6);
+            TagsEPC.Add("0000 0000 0000 0000 0000 0016", 7);
 
 
-            TagNames.Add("0000 0000 0000 0000 0000 0093");
-            TagNames.Add("0000 0000 0000 0000 0000 0096");
-            TagNames.Add("0000 0000 0000 0000 0000 0070");
-            TagNames.Add("0000 0000 0000 0000 0000 0073");
-            TagNames.Add("0000 0000 0000 0000 0000 0074");
-            TagNames.Add("0000 0000 0000 0000 0000 0075");
+            TagNames.Add("0000 0000 0000 0000 0000 0030");
+            TagNames.Add("0000 0000 0000 0000 0000 0037");
+            TagNames.Add("0000 0000 0000 0000 0000 0059");
+            TagNames.Add("0000 0000 0000 0000 0000 0025");
+            TagNames.Add("0000 0000 0000 0000 0000 0044");
+            TagNames.Add("0000 0000 0000 0000 0000 0051");
+            TagNames.Add("0000 0000 0000 0000 0000 0016");
+
 
         }
 
@@ -85,15 +92,20 @@ namespace TagGesture
         static void Main(string[] args)
         {
             //Determine the MRT at the first time
+            //Client client = new Client();
+            //client.Start();
+
             DetermineMRT();
+            //DetermineMRT(client);
             //Check the Status Change 
-            
+
             //InspectStatusChange(TxRange);
         }
 
 
 
         static void DetermineMRT()
+ //static void DetermineMRT(Client client)
         {
 
             try
@@ -130,39 +142,46 @@ namespace TagGesture
                 List<double> PowerRange = new List<double>();
                 while (true)
                 {
-                    for (double i = 32; i > 28; i = i - 0.25)
-                    {
+                    //for (double i = 32; i > 28; i = i - 0.25)
+                    //{
+                        int i = 32;
                         //double i = 29.75;
                         PowerRange.Add(i);
-                        IncomingTagNumber93 = 0;
-                        IncomingTagNumber70 = 0;
-                        IncomingTagNumber96 = 0;
-                        IncomingTagNumber73 = 0;
-                        IncomingPieceNumber74 = 0;
-                        IncomingPieceNumber75 = 0;
-
-                        SpecifiedTx = i;
+                        IncomingTagNumber30 = 0;
+                        IncomingTagNumber37 = 0;
+                    IncomingTagNumber59 = 0;
+                    IncomingTagNumber25 = 0;
+                    IncomingTagNumber44 = 0;
+                    IncomingTagNumber51 = 0;
+                    IncomingTagNumber16 = 0;
+                    SpecifiedTx = i;
 
                         settings.Antennas.GetAntenna(1).TxPowerInDbm = SpecifiedTx;
                         reader.ApplySettings(settings);
                         reader.Start();
-                        Thread.Sleep(900);//收集5s数据？
+                        Thread.Sleep(1000);//收集5s数据？
                         reader.Stop();
                         System.Console.WriteLine("Current Tx power is:" + settings.Antennas.GetAntenna(1).TxPowerInDbm);
-                        System.Console.WriteLine("IncomingTagNumber93 is:" + IncomingTagNumber93);
-                        TagList93.Add(IncomingTagNumber93);
-                        System.Console.WriteLine("IncomingTagNumber70 is:" + IncomingTagNumber70);
-                        TagList70.Add(IncomingTagNumber70);
-                        System.Console.WriteLine("IncomingTagNumber96 is:" + IncomingTagNumber96);
-                        TagList96.Add(IncomingTagNumber96);
-                        //System.Console.WriteLine("IncomingTagNumber73 is:" + IncomingTagNumber73);
-                        //TagList73.Add(IncomingTagNumber73);
-                        //System.Console.WriteLine("IncomingPieceNumber74 is:" + IncomingPieceNumber74);
-                        //PieceList74.Add(IncomingPieceNumber74);
-                        //System.Console.WriteLine("IncomingPieceNumber75 is:" + IncomingPieceNumber75);
-                        //PieceList75.Add(IncomingPieceNumber75);
+                        System.Console.WriteLine("IncomingTagNumber30 is:" + IncomingTagNumber30);
+                        TagList30.Add(IncomingTagNumber30);
+                        System.Console.WriteLine("IncomingTagNumber37 is:" + IncomingTagNumber37);
+                        TagList37.Add(IncomingTagNumber37);
+                        System.Console.WriteLine("IncomingTagNumber59 is:" + IncomingTagNumber59);
+                        TagList59.Add(IncomingTagNumber59);
+                        System.Console.WriteLine("IncomingTagNumber25 is:" + IncomingTagNumber25);
+                        TagList25.Add(IncomingTagNumber25);
+                        System.Console.WriteLine("IncomingTagNumber44 is:" + IncomingTagNumber44);
+                        TagList44.Add(IncomingTagNumber44);
+                        System.Console.WriteLine("IncomingTagNumber51 is:" + IncomingTagNumber51);
+                        TagList51.Add(IncomingTagNumber51);
+                    System.Console.WriteLine("IncomingTagNumber16 is:" + IncomingTagNumber16);
+                    TagList16.Add(IncomingTagNumber16);
+                    //client.ReadInput(IncomingTagNumber70);
+                    //    client.Send();
 
-                    }
+
+
+                    //}
 
                 }
               
@@ -212,19 +231,36 @@ namespace TagGesture
 
                 string EPCStr = tag.Epc.ToString();
                 //把有值的列添加到表
-                if (EPCStr.Contains("0093"))
+                if (EPCStr.Contains("0030"))
                 {
-                    IncomingTagNumber93 = IncomingTagNumber93 + 1;
+                    IncomingTagNumber30 = IncomingTagNumber30 + 1;
                 }
-                else if (EPCStr.Contains("0012"))
+                else if (EPCStr.Contains("0037"))
                 {
-                    IncomingTagNumber70 = IncomingTagNumber70 + 1;
+                    IncomingTagNumber37 = IncomingTagNumber37 + 1;
                 }
-                else if (EPCStr.Contains("0078"))
+                else if (EPCStr.Contains("0059"))
                 {
-                    IncomingTagNumber96 = IncomingTagNumber96 + 1;
+                    IncomingTagNumber59 = IncomingTagNumber59 + 1;
                 }
-              
+                else if (EPCStr.Contains("0025"))
+                {
+                    IncomingTagNumber25 = IncomingTagNumber25 + 1;
+                }
+                else if (EPCStr.Contains("0044"))
+                {
+                    IncomingTagNumber44 = IncomingTagNumber44 + 1;
+                }
+                else if (EPCStr.Contains("0051"))
+                {
+                    IncomingTagNumber51 = IncomingTagNumber51 + 1;
+                }
+                else if (EPCStr.Contains("0016"))
+                {
+                    IncomingTagNumber16 = IncomingTagNumber16 + 1;
+                }
+
+
                 else
                 {
 
