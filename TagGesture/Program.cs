@@ -63,8 +63,34 @@ namespace TagGesture
         static List<int> TagList16 = new List<int>();
         static int IncomingTagNumber60 = 0;
         static List<int> TagList60 = new List<int>();
-
-
+        static int IncomingTagNumber41 = 0;
+        static List<int> TagList41 = new List<int>();
+        static int IncomingTagNumber47 = 0;
+        static List<int> TagList47 = new List<int>();
+        static int IncomingTagNumber46 = 0;
+        static List<int> TagList46 = new List<int>();
+        static int IncomingTagNumber68 = 0;
+        static List<int> TagList68 = new List<int>();
+        static int IncomingTagNumber35 = 0;
+        static List<int> TagList35 = new List<int>();
+        static int IncomingTagNumber01 = 0;
+        static List<int> TagList01 = new List<int>();
+        static int IncomingTagNumber17 = 0;
+        static List<int> TagList17 = new List<int>();
+        static int IncomingTagNumber40 = 0;
+        static List<int> TagList40 = new List<int>();
+        static int IncomingTagNumber45 = 0;
+        static List<int> TagList45 = new List<int>();
+        static int IncomingTagNumber48 = 0;
+        static List<int> TagList48 = new List<int>();
+        static int IncomingTagNumber54 = 0;
+        static List<int> TagList54 = new List<int>();
+        static int IncomingTagNumber53 = 0;
+        static List<int> TagList53 = new List<int>();
+        static int IncomingTagNumber52 = 0;
+        static List<int> TagList52 = new List<int>();
+        static int IncomingTagNumber58 = 0;
+        static List<int> TagList58 = new List<int>();
 
         static void InitTagsEPC()
         {
@@ -75,6 +101,21 @@ namespace TagGesture
             TagsEPC.Add("0000 0000 0000 0000 0000 0044", 5);
             TagsEPC.Add("0000 0000 0000 0000 0000 0051", 6);
             TagsEPC.Add("0000 0000 0000 0000 0000 0016", 7);
+            TagsEPC.Add("0000 0000 0000 0000 0000 0041", 8);
+            TagsEPC.Add("0000 0000 0000 0000 0000 0060", 9);
+            TagsEPC.Add("0000 0000 0000 0000 0000 0046", 10);
+            TagsEPC.Add("0000 0000 0000 0000 0000 0047", 11);
+            TagsEPC.Add("0000 0000 0000 0000 0000 0068", 12);
+            TagsEPC.Add("0000 0000 0000 0000 0000 0035", 13);
+            TagsEPC.Add("0000 0000 0000 0000 0000 0001", 14);
+            TagsEPC.Add("0000 0000 0000 0000 0000 0017", 15);
+            TagsEPC.Add("0000 0000 0000 0000 0000 0040", 16);
+            TagsEPC.Add("0000 0000 0000 0000 0000 0045", 17);
+            TagsEPC.Add("0000 0000 0000 0000 0000 0048", 18);
+            TagsEPC.Add("0000 0000 0000 0000 0000 0054", 19);
+            TagsEPC.Add("0000 0000 0000 0000 0000 0053", 20);
+            TagsEPC.Add("0000 0000 0000 0000 0000 0052", 21);
+            TagsEPC.Add("0000 0000 0000 0000 0000 0058", 22);
 
 
             TagNames.Add("0000 0000 0000 0000 0000 0030");
@@ -84,6 +125,23 @@ namespace TagGesture
             TagNames.Add("0000 0000 0000 0000 0000 0044");
             TagNames.Add("0000 0000 0000 0000 0000 0051");
             TagNames.Add("0000 0000 0000 0000 0000 0016");
+            TagNames.Add("0000 0000 0000 0000 0000 0041");
+            TagNames.Add("0000 0000 0000 0000 0000 0060");
+            TagNames.Add("0000 0000 0000 0000 0000 0046");
+            TagNames.Add("0000 0000 0000 0000 0000 0047");
+            TagNames.Add("0000 0000 0000 0000 0000 0068");
+            TagNames.Add("0000 0000 0000 0000 0000 0035");
+            TagNames.Add("0000 0000 0000 0000 0000 0001");
+            TagNames.Add("0000 0000 0000 0000 0000 0017");
+            TagNames.Add("0000 0000 0000 0000 0000 0040");
+            TagNames.Add("0000 0000 0000 0000 0000 0045");
+            TagNames.Add("0000 0000 0000 0000 0000 0048");
+            TagNames.Add("0000 0000 0000 0000 0000 0053");
+            TagNames.Add("0000 0000 0000 0000 0000 0054");
+            TagNames.Add("0000 0000 0000 0000 0000 0052");
+            TagNames.Add("0000 0000 0000 0000 0000 0058");
+
+
 
 
         }
@@ -154,6 +212,21 @@ namespace TagGesture
                     IncomingTagNumber44 = 0;
                     IncomingTagNumber51 = 0;
                     IncomingTagNumber16 = 0;
+                    IncomingTagNumber41 = 0;
+                    IncomingTagNumber60 = 0;
+                    IncomingTagNumber46 = 0;
+                    IncomingTagNumber47 = 0;
+                    IncomingTagNumber68 = 0;
+                    IncomingTagNumber35 = 0;
+                    IncomingTagNumber01 = 0;
+                    IncomingTagNumber17 = 0;
+                    IncomingTagNumber40 = 0;
+                    IncomingTagNumber45 = 0;
+                    IncomingTagNumber48 = 0;
+                    IncomingTagNumber54 = 0;
+                    IncomingTagNumber53 = 0;
+                    IncomingTagNumber52 = 0;
+                    IncomingTagNumber58 = 0;
                     SpecifiedTx = i;
 
                         settings.Antennas.GetAntenna(1).TxPowerInDbm = SpecifiedTx;
@@ -176,6 +249,36 @@ namespace TagGesture
                         TagList51.Add(IncomingTagNumber51);
                     System.Console.WriteLine("IncomingTagNumber16 is:" + IncomingTagNumber16);
                     TagList16.Add(IncomingTagNumber16);
+                    System.Console.WriteLine("IncomingTagNumber41 is:" + IncomingTagNumber41);
+                    TagList41.Add(IncomingTagNumber41);
+                    System.Console.WriteLine("IncomingTagNumber60 is:" + IncomingTagNumber60);
+                    TagList60.Add(IncomingTagNumber60);
+                    System.Console.WriteLine("IncomingTagNumber46 is:" + IncomingTagNumber46);
+                    TagList46.Add(IncomingTagNumber46);
+                    System.Console.WriteLine("IncomingTagNumber47 is:" + IncomingTagNumber47);
+                    TagList47.Add(IncomingTagNumber47);
+                    System.Console.WriteLine("IncomingTagNumber68 is:" + IncomingTagNumber68);
+                    TagList68.Add(IncomingTagNumber68);
+                    System.Console.WriteLine("IncomingTagNumber35 is:" + IncomingTagNumber35);
+                    TagList35.Add(IncomingTagNumber35);
+                    System.Console.WriteLine("IncomingTagNumber01 is:" + IncomingTagNumber01);
+                    TagList01.Add(IncomingTagNumber01);
+                    System.Console.WriteLine("IncomingTagNumber17 is:" + IncomingTagNumber17);
+                    TagList17.Add(IncomingTagNumber17);
+                    System.Console.WriteLine("IncomingTagNumber40 is:" + IncomingTagNumber40);
+                    TagList40.Add(IncomingTagNumber40);
+                    System.Console.WriteLine("IncomingTagNumber45 is:" + IncomingTagNumber45);
+                    TagList45.Add(IncomingTagNumber45);
+                    System.Console.WriteLine("IncomingTagNumber48 is:" + IncomingTagNumber48);
+                    TagList48.Add(IncomingTagNumber48);
+                    System.Console.WriteLine("IncomingTagNumber54 is:" + IncomingTagNumber54);
+                    TagList54.Add(IncomingTagNumber54);
+                    System.Console.WriteLine("IncomingTagNumber53 is:" + IncomingTagNumber53);
+                    TagList53.Add(IncomingTagNumber53);
+                    System.Console.WriteLine("IncomingTagNumber52 is:" + IncomingTagNumber52);
+                    TagList52.Add(IncomingTagNumber52);
+                    System.Console.WriteLine("IncomingTagNumber58 is:" + IncomingTagNumber58);
+                    TagList58.Add(IncomingTagNumber58);
                     //client.ReadInput(IncomingTagNumber70);
                     //    client.Send();
 
@@ -259,7 +362,67 @@ namespace TagGesture
                 {
                     IncomingTagNumber16 = IncomingTagNumber16 + 1;
                 }
+                else if (EPCStr.Contains("0041"))
+                {
+                    IncomingTagNumber41 = IncomingTagNumber41 + 1;
+                }
+                else if (EPCStr.Contains("0060"))
+                {
+                    IncomingTagNumber60 = IncomingTagNumber60 + 1;
+                }
+                else if (EPCStr.Contains("0046"))
+                {
+                    IncomingTagNumber46 = IncomingTagNumber46 + 1;
+                }
+                else if (EPCStr.Contains("0047"))
+                {
+                    IncomingTagNumber47 = IncomingTagNumber47 + 1;
+                }
+                else if (EPCStr.Contains("0068"))
+                {
+                    IncomingTagNumber68 = IncomingTagNumber68 + 1;
+                }
+                else if (EPCStr.Contains("0035"))
+                {
+                    IncomingTagNumber35 = IncomingTagNumber35 + 1;
+                }
+                else if (EPCStr.Contains("0001"))
+                {
+                    IncomingTagNumber01 = IncomingTagNumber01+ 1;
+                }
+                else if (EPCStr.Contains("0017"))
+                {
+                    IncomingTagNumber17 = IncomingTagNumber17 + 1;
+                }
+                else if (EPCStr.Contains("0040"))
+                {
+                    IncomingTagNumber40 = IncomingTagNumber40 + 1;
+                }
+                else if (EPCStr.Contains("0045"))
+                {
+                    IncomingTagNumber45 = IncomingTagNumber45 + 1;
+                }
+                else if (EPCStr.Contains("0048"))
+                {
+                    IncomingTagNumber48 = IncomingTagNumber48 + 1;
+                }
 
+                else if (EPCStr.Contains("0054"))
+                {
+                    IncomingTagNumber54 = IncomingTagNumber54 + 1;
+                }
+                else if (EPCStr.Contains("0053"))
+                {
+                    IncomingTagNumber53 = IncomingTagNumber53 + 1;
+                }
+                else if (EPCStr.Contains("0052"))
+                {
+                    IncomingTagNumber52 = IncomingTagNumber52 + 1;
+                }
+                else if (EPCStr.Contains("0058"))
+                {
+                    IncomingTagNumber58 = IncomingTagNumber58 + 1;
+                }
 
                 else
                 {
@@ -365,6 +528,9 @@ namespace TagGesture
                 return -1;
             }
         }
+
+        public delegate void MyDelegate();
+
 
 
 
