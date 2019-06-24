@@ -54,8 +54,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddTag.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="CsvStreamWriter.cs" />
+    <Compile Include="Monitor.cs" />
+    <Compile Include="MyValue.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SolutionConstants.cs" />

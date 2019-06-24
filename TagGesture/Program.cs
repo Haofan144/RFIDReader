@@ -45,6 +45,8 @@ namespace TagGesture
 
         static double SpecifiedTx = 30;
 
+        public int threshold = 10;
+       // public AddTag tag30 = new AddTag(0, new List<int>(),10);
         //static List<int> list = new List<int>();
         static int IncomingTagNumber30 = 0;
         static List<int> TagList30 = new List<int>();
@@ -152,11 +154,11 @@ namespace TagGesture
             //Determine the MRT at the first time
             //Client client = new Client();
             //client.Start();
-
-            DetermineMRT();
+            // AddTag tag30 = new AddTag(0, new List<int>(), 10);
+             DetermineMRT();
             //DetermineMRT(client);
             //Check the Status Change 
-
+            
             //InspectStatusChange(TxRange);
         }
 
@@ -198,6 +200,8 @@ namespace TagGesture
                 reader.ApplySettings(settings);
                 reader.TagsReported += OnTagsReported;
                 List<double> PowerRange = new List<double>();
+                AddTag tag30 = new AddTag(0);
+                //tag30.Test();
                 while (true)
                 {
                     //for (double i = 32; i > 28; i = i - 0.25)
@@ -205,6 +209,7 @@ namespace TagGesture
                         int i = 32;
                         //double i = 29.75;
                         PowerRange.Add(i);
+                   
                         IncomingTagNumber30 = 0;
                         IncomingTagNumber37 = 0;
                     IncomingTagNumber59 = 0;
@@ -237,6 +242,9 @@ namespace TagGesture
                         System.Console.WriteLine("Current Tx power is:" + settings.Antennas.GetAntenna(1).TxPowerInDbm);
                         System.Console.WriteLine("IncomingTagNumber30 is:" + IncomingTagNumber30);
                         TagList30.Add(IncomingTagNumber30);
+                    tag30.IncomingTagNumber = IncomingTagNumber30;
+                 
+
                         System.Console.WriteLine("IncomingTagNumber37 is:" + IncomingTagNumber37);
                         TagList37.Add(IncomingTagNumber37);
                         System.Console.WriteLine("IncomingTagNumber59 is:" + IncomingTagNumber59);
@@ -529,9 +537,7 @@ namespace TagGesture
             }
         }
 
-        public delegate void MyDelegate();
-
-
+       
 
 
 
