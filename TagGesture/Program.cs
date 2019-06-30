@@ -142,34 +142,18 @@ namespace TagGesture
             TagNames.Add("0000 0000 0000 0000 0000 0054");
             TagNames.Add("0000 0000 0000 0000 0000 0052");
             TagNames.Add("0000 0000 0000 0000 0000 0058");
-
-
-
-
+                                 
         }
 
 
         static void Main(string[] args)
         {
-            //Determine the MRT at the first time
-            //Client client = new Client();
-            //client.Start();
-            // AddTag tag30 = new AddTag(0, new List<int>(), 10);
-             DetermineMRT();
+            // DetermineMRT();
             //DetermineMRT(client);
-            //Check the Status Change 
-            
-            //InspectStatusChange(TxRange);
-        }
-
-
-
-        static void DetermineMRT()
- //static void DetermineMRT(Client client)
-        {
-
             try
             {
+                Client client = new Client();
+                client.Start();
                 System.Console.WriteLine("Before------------!!!");
                 initDataRow();
                 InitTagsEPC();
@@ -200,18 +184,19 @@ namespace TagGesture
                 reader.ApplySettings(settings);
                 reader.TagsReported += OnTagsReported;
                 List<double> PowerRange = new List<double>();
-                AddTag tag30 = new AddTag(0);
+                AddTag tag30 = new AddTag();
+                tag30.Test();
                 //tag30.Test();
                 while (true)
                 {
                     //for (double i = 32; i > 28; i = i - 0.25)
                     //{
-                        int i = 32;
-                        //double i = 29.75;
-                        PowerRange.Add(i);
-                   
-                        IncomingTagNumber30 = 0;
-                        IncomingTagNumber37 = 0;
+                    int i = 32;
+                    //double i = 29.75;
+                    PowerRange.Add(i);
+
+                    IncomingTagNumber30 = 0;
+                    IncomingTagNumber37 = 0;
                     IncomingTagNumber59 = 0;
                     IncomingTagNumber25 = 0;
                     IncomingTagNumber44 = 0;
@@ -234,27 +219,27 @@ namespace TagGesture
                     IncomingTagNumber58 = 0;
                     SpecifiedTx = i;
 
-                        settings.Antennas.GetAntenna(1).TxPowerInDbm = SpecifiedTx;
-                        reader.ApplySettings(settings);
-                        reader.Start();
-                        Thread.Sleep(1000);//收集5s数据？
-                        reader.Stop();
-                        System.Console.WriteLine("Current Tx power is:" + settings.Antennas.GetAntenna(1).TxPowerInDbm);
-                        System.Console.WriteLine("IncomingTagNumber30 is:" + IncomingTagNumber30);
-                        TagList30.Add(IncomingTagNumber30);
-                    tag30.IncomingTagNumber = IncomingTagNumber30;
-                 
+                    settings.Antennas.GetAntenna(1).TxPowerInDbm = SpecifiedTx;
+                    reader.ApplySettings(settings);
+                    reader.Start();
+                    Thread.Sleep(1000);//收集5s数据？
+                    reader.Stop();
+                    System.Console.WriteLine("Current Tx power is:" + settings.Antennas.GetAntenna(1).TxPowerInDbm);
+                    System.Console.WriteLine("IncomingTagNumber30 is:" + IncomingTagNumber30);
+                    TagList30.Add(IncomingTagNumber30);
+                    tag30.Count = IncomingTagNumber30;
 
-                        System.Console.WriteLine("IncomingTagNumber37 is:" + IncomingTagNumber37);
-                        TagList37.Add(IncomingTagNumber37);
-                        System.Console.WriteLine("IncomingTagNumber59 is:" + IncomingTagNumber59);
-                        TagList59.Add(IncomingTagNumber59);
-                        System.Console.WriteLine("IncomingTagNumber25 is:" + IncomingTagNumber25);
-                        TagList25.Add(IncomingTagNumber25);
-                        System.Console.WriteLine("IncomingTagNumber44 is:" + IncomingTagNumber44);
-                        TagList44.Add(IncomingTagNumber44);
-                        System.Console.WriteLine("IncomingTagNumber51 is:" + IncomingTagNumber51);
-                        TagList51.Add(IncomingTagNumber51);
+
+                    System.Console.WriteLine("IncomingTagNumber37 is:" + IncomingTagNumber37);
+                    TagList37.Add(IncomingTagNumber37);
+                    System.Console.WriteLine("IncomingTagNumber59 is:" + IncomingTagNumber59);
+                    TagList59.Add(IncomingTagNumber59);
+                    System.Console.WriteLine("IncomingTagNumber25 is:" + IncomingTagNumber25);
+                    TagList25.Add(IncomingTagNumber25);
+                    System.Console.WriteLine("IncomingTagNumber44 is:" + IncomingTagNumber44);
+                    TagList44.Add(IncomingTagNumber44);
+                    System.Console.WriteLine("IncomingTagNumber51 is:" + IncomingTagNumber51);
+                    TagList51.Add(IncomingTagNumber51);
                     System.Console.WriteLine("IncomingTagNumber16 is:" + IncomingTagNumber16);
                     TagList16.Add(IncomingTagNumber16);
                     System.Console.WriteLine("IncomingTagNumber41 is:" + IncomingTagNumber41);
@@ -287,31 +272,37 @@ namespace TagGesture
                     TagList52.Add(IncomingTagNumber52);
                     System.Console.WriteLine("IncomingTagNumber58 is:" + IncomingTagNumber58);
                     TagList58.Add(IncomingTagNumber58);
-                    //client.ReadInput(IncomingTagNumber70);
-                    //    client.Send();
+                    client.ReadInput(IncomingTagNumber37);
+                    client.Send();
 
 
 
                     //}
 
                 }
-              
-                
+
+
 
 
             }
             catch (OctaneSdkException e)
             {
                 Console.WriteLine("Octane SDK exception: {0}", e.Message);
-                
+
             }
             catch (Exception e)
             {
                 Console.WriteLine("Exception : {0}", e.Message);
                 //return null;
             }
-           
+            //Check the Status Change 
+
+            //InspectStatusChange(TxRange);
         }
+
+
+
+       
 
 
 
@@ -537,8 +528,158 @@ namespace TagGesture
             }
         }
 
-       
 
+        //static void DetermineMRT()
+        ////static void DetermineMRT(Client client)
+        //{
+
+        //    try
+        //    {
+        //        Client client = new Client();
+        //        client.Start();
+        //        System.Console.WriteLine("Before------------!!!");
+        //        initDataRow();
+        //        InitTagsEPC();
+        //        System.Console.WriteLine("Before Connect!!!");
+        //        reader.Connect(SolutionConstants.ReaderHostname);
+        //        System.Console.WriteLine("Connect!!!");
+        //        FeatureSet features = reader.QueryFeatureSet();
+        //        Settings settings = reader.QueryDefaultSettings();
+        //        reportSetting(settings);
+        //        settings.Antennas.DisableAll();
+        //        settings.Antennas.GetAntenna(1).IsEnabled = true;
+        //        settings.Antennas.GetAntenna(2).IsEnabled = true;
+
+        //        SpecifiedTx = 30;
+        //        settings.Antennas.GetAntenna(1).TxPowerInDbm = SpecifiedTx;
+        //        settings.SearchMode = SearchMode.DualTarget;
+        //        settings.Session = 2;
+        //        settings.ReaderMode = ReaderMode.MaxThroughput;//编码方式
+        //        System.Console.WriteLine("1!");
+        //        settings.Report.Mode = ReportMode.Individual;
+        //        filterTags(settings);
+        //        if (0 != fixFrequency(features, settings))
+        //        {
+        //            applicactionClose();
+        //        }
+
+        //        System.Console.WriteLine("3!");
+        //        reader.ApplySettings(settings);
+        //        reader.TagsReported += OnTagsReported;
+        //        List<double> PowerRange = new List<double>();
+        //        AddTag tag30 = new AddTag();
+        //        tag30.Test();
+        //        //tag30.Test();
+        //        while (true)
+        //        {
+        //            //for (double i = 32; i > 28; i = i - 0.25)
+        //            //{
+        //            int i = 32;
+        //            //double i = 29.75;
+        //            PowerRange.Add(i);
+
+        //            IncomingTagNumber30 = 0;
+        //            IncomingTagNumber37 = 0;
+        //            IncomingTagNumber59 = 0;
+        //            IncomingTagNumber25 = 0;
+        //            IncomingTagNumber44 = 0;
+        //            IncomingTagNumber51 = 0;
+        //            IncomingTagNumber16 = 0;
+        //            IncomingTagNumber41 = 0;
+        //            IncomingTagNumber60 = 0;
+        //            IncomingTagNumber46 = 0;
+        //            IncomingTagNumber47 = 0;
+        //            IncomingTagNumber68 = 0;
+        //            IncomingTagNumber35 = 0;
+        //            IncomingTagNumber01 = 0;
+        //            IncomingTagNumber17 = 0;
+        //            IncomingTagNumber40 = 0;
+        //            IncomingTagNumber45 = 0;
+        //            IncomingTagNumber48 = 0;
+        //            IncomingTagNumber54 = 0;
+        //            IncomingTagNumber53 = 0;
+        //            IncomingTagNumber52 = 0;
+        //            IncomingTagNumber58 = 0;
+        //            SpecifiedTx = i;
+
+        //            settings.Antennas.GetAntenna(1).TxPowerInDbm = SpecifiedTx;
+        //            reader.ApplySettings(settings);
+        //            reader.Start();
+        //            Thread.Sleep(1000);//收集5s数据？
+        //            reader.Stop();
+        //            System.Console.WriteLine("Current Tx power is:" + settings.Antennas.GetAntenna(1).TxPowerInDbm);
+        //            System.Console.WriteLine("IncomingTagNumber30 is:" + IncomingTagNumber30);
+        //            TagList30.Add(IncomingTagNumber30);
+        //            tag30.Count = IncomingTagNumber30;
+
+
+        //            System.Console.WriteLine("IncomingTagNumber37 is:" + IncomingTagNumber37);
+        //            TagList37.Add(IncomingTagNumber37);
+        //            System.Console.WriteLine("IncomingTagNumber59 is:" + IncomingTagNumber59);
+        //            TagList59.Add(IncomingTagNumber59);
+        //            System.Console.WriteLine("IncomingTagNumber25 is:" + IncomingTagNumber25);
+        //            TagList25.Add(IncomingTagNumber25);
+        //            System.Console.WriteLine("IncomingTagNumber44 is:" + IncomingTagNumber44);
+        //            TagList44.Add(IncomingTagNumber44);
+        //            System.Console.WriteLine("IncomingTagNumber51 is:" + IncomingTagNumber51);
+        //            TagList51.Add(IncomingTagNumber51);
+        //            System.Console.WriteLine("IncomingTagNumber16 is:" + IncomingTagNumber16);
+        //            TagList16.Add(IncomingTagNumber16);
+        //            System.Console.WriteLine("IncomingTagNumber41 is:" + IncomingTagNumber41);
+        //            TagList41.Add(IncomingTagNumber41);
+        //            System.Console.WriteLine("IncomingTagNumber60 is:" + IncomingTagNumber60);
+        //            TagList60.Add(IncomingTagNumber60);
+        //            System.Console.WriteLine("IncomingTagNumber46 is:" + IncomingTagNumber46);
+        //            TagList46.Add(IncomingTagNumber46);
+        //            System.Console.WriteLine("IncomingTagNumber47 is:" + IncomingTagNumber47);
+        //            TagList47.Add(IncomingTagNumber47);
+        //            System.Console.WriteLine("IncomingTagNumber68 is:" + IncomingTagNumber68);
+        //            TagList68.Add(IncomingTagNumber68);
+        //            System.Console.WriteLine("IncomingTagNumber35 is:" + IncomingTagNumber35);
+        //            TagList35.Add(IncomingTagNumber35);
+        //            System.Console.WriteLine("IncomingTagNumber01 is:" + IncomingTagNumber01);
+        //            TagList01.Add(IncomingTagNumber01);
+        //            System.Console.WriteLine("IncomingTagNumber17 is:" + IncomingTagNumber17);
+        //            TagList17.Add(IncomingTagNumber17);
+        //            System.Console.WriteLine("IncomingTagNumber40 is:" + IncomingTagNumber40);
+        //            TagList40.Add(IncomingTagNumber40);
+        //            System.Console.WriteLine("IncomingTagNumber45 is:" + IncomingTagNumber45);
+        //            TagList45.Add(IncomingTagNumber45);
+        //            System.Console.WriteLine("IncomingTagNumber48 is:" + IncomingTagNumber48);
+        //            TagList48.Add(IncomingTagNumber48);
+        //            System.Console.WriteLine("IncomingTagNumber54 is:" + IncomingTagNumber54);
+        //            TagList54.Add(IncomingTagNumber54);
+        //            System.Console.WriteLine("IncomingTagNumber53 is:" + IncomingTagNumber53);
+        //            TagList53.Add(IncomingTagNumber53);
+        //            System.Console.WriteLine("IncomingTagNumber52 is:" + IncomingTagNumber52);
+        //            TagList52.Add(IncomingTagNumber52);
+        //            System.Console.WriteLine("IncomingTagNumber58 is:" + IncomingTagNumber58);
+        //            TagList58.Add(IncomingTagNumber58);
+        //            client.ReadInput(IncomingTagNumber70);
+        //            client.Send();
+
+
+
+        //            //}
+
+        //        }
+
+
+
+
+        //    }
+        //    catch (OctaneSdkException e)
+        //    {
+        //        Console.WriteLine("Octane SDK exception: {0}", e.Message);
+
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Console.WriteLine("Exception : {0}", e.Message);
+        //        //return null;
+        //    }
+
+        //}
 
 
 

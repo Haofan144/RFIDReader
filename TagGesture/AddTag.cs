@@ -9,60 +9,54 @@ namespace TagGesture
     class AddTag
     {
 
-        public int IncomingTagNumber;
-        //public int Count
-        //{
-        //    get
-        //    {
-        //        return IncomingTagNumber;
-        //    }
-        //    set
-        //    {
-        //        if (value <10)//当值发生改变时
-        //        {
-        //           // IncomingTagNumber = value;
-        //            WhenMyValueChange();
-        //        }
-        //        IncomingTagNumber = value;
-        //    }
-        //}
-
-        public AddTag(int IncomingTagNumber)
+        private int IncomingTagNumber;
+        public int Count
         {
-            this.IncomingTagNumber = IncomingTagNumber;
-            if (IncomingTagNumber < 10)
+            get
             {
-                WhenMyValueChange();
+                return IncomingTagNumber;
+            }
+            set
+            {
+                if (value < 10)//当值发生改变时
+                {
+                    // IncomingTagNumber = value;
+                    WhenMyValueChange();
+                }
+                IncomingTagNumber = value;
             }
         }
-        private void WhenMyValueChange()
-        {
-            Console.WriteLine("hello");
-        }
-        ////定义一个委托
-        //public delegate void MyValueChanged();
-        ////与委托相关联的事件
-        //public event MyValueChanged OnMyValueChanged;
 
-        //public void Test()
-        //{
-        //    //IncomingTagNumber = 0;
-        //    OnMyValueChanged += new MyValueChanged(DoSomgThing);
-        //}
-
-        //void DoSomgThing()
-        //{
-        //    //do
-        //    Console.WriteLine("tag state changes");
-        //}
 
         //private void WhenMyValueChange()
         //{
-        //    if (OnMyValueChanged != null)
-        //    {
-        //        OnMyValueChanged();
-        //    }
+        //    Console.WriteLine("hello");
         //}
+
+        //定义一个委托
+        public delegate void MyValueChanged();
+        //与委托相关联的事件
+        public event MyValueChanged OnMyValueChanged;
+
+        public void Test()
+        {
+            //IncomingTagNumber = 0;
+            OnMyValueChanged += new MyValueChanged(DoSomgThing);
+        }
+
+        void DoSomgThing()
+        {
+            //do
+            Console.WriteLine("tag state changes");
+        }
+
+        private void WhenMyValueChange()
+        {
+            if (OnMyValueChanged != null)
+            {
+                OnMyValueChanged();
+            }
+        }
 
 
 
