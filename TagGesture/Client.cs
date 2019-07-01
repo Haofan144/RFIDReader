@@ -18,6 +18,7 @@ namespace TagGesture
         const int buff_size = 1024;
         public byte[] readbuff = new byte[buff_size];
         public int num;
+        public string sendstr = "";
 
         public void Start()
         {
@@ -87,12 +88,13 @@ namespace TagGesture
         {
             this.num = num;
         }
-        public void Send()
+        public void Send(string sendId)
         {
             //string str = TextInput.text;
-            string str = " I'm a reader"+num;
+            //string str = "00037";
+            sendstr = sendId;
 
-            byte[] bytes = System.Text.Encoding.Default.GetBytes(str);
+            byte[] bytes = System.Text.Encoding.Default.GetBytes(sendstr);
 
 
             try

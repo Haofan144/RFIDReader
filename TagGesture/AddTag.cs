@@ -10,114 +10,49 @@ namespace TagGesture
     {
 
         private int IncomingTagNumber;
-        public int Count
+        private int myValue = 0;
+        public string inputstr;
+        public string Output;
+        public int MyValue
         {
-            get
-            {
-                return IncomingTagNumber;
-            }
+            get { return myValue; }
             set
             {
-                if (value < 10)//当值发生改变时
+                //if myValue<threshold
+                if (myValue < 5)
                 {
-                    // IncomingTagNumber = value;
-                    WhenMyValueChange();
+                    myValue = value;
+                    Console.WriteLine(myValue);
+                    //Trigger event 
+                    Output = WhenMyValueChange();
                 }
-                IncomingTagNumber = value;
+
+
             }
         }
 
 
-        //private void WhenMyValueChange()
-        //{
-        //    Console.WriteLine("hello");
-        //}
-
-        //定义一个委托
-        public delegate void MyValueChanged();
-        //与委托相关联的事件
+        //Define a delegate 
+        public delegate string MyValueChanged();
+        //Define an event 
         public event MyValueChanged OnMyValueChanged;
 
-        public void Test()
+        string DoSomgThing()
         {
-            //IncomingTagNumber = 0;
+            //Console.WriteLine("tag state changes"+myValue);
+            string output = "hello" + myValue;
+            return output;
+        }
+
+        private string WhenMyValueChange()
+        {
+            //if (OnMyValueChanged != null)
+            //{
             OnMyValueChanged += new MyValueChanged(DoSomgThing);
+            string output = OnMyValueChanged();
+            return output;
+            // }
         }
-
-        void DoSomgThing()
-        {
-            //do
-            Console.WriteLine("tag state changes");
-        }
-
-        private void WhenMyValueChange()
-        {
-            if (OnMyValueChanged != null)
-            {
-                OnMyValueChanged();
-            }
-        }
-
-
-
-
-        //public void WhenMyValueChange()
-        //{
-        //    if (OnMyValueChanged != null)
-
-        //    {
-
-        //        OnMyValueChanged(this, null);
-
-        //    }
-        //}
-
-        //public void afterMyValueChange()
-        //{
-        //    //dosomething
-        //    Console.WriteLine("hello");
-        //}
-
-        ////定义一个委托
-        //public delegate void MyValueChanged(object sender, EventArgs e);
-        ////与委托相关联的事件
-        //public event MyValueChanged OnMyValueChanged;
-
-        ////将afterMyValueChanged的委托绑定到事件上
-        //public void Test()
-        //{
-        //    OnMyValueChanged += new MyValueChanged(afterMyValueChanged);
-        //}
-
-
-
-
-
-        //public int IncomingTagNumber;
-        //public List<int> TagList;
-        ////public  List<int> TagList = new List<int>();
-        //public int threshold; 
-
-        ////Initialization
-        //public AddTag(int IncomingTagNumber, int threshold,Monitor monitor)
-        //{
-        //    this.IncomingTagNumber = IncomingTagNumber;
-        //    //this.TagList = TagList;
-        //    this.threshold = threshold;
-
-        //}
-
-        //public delegate void ValueChange();
-        //public event ValueChange WhenValueChange;
-
-        //public void ChangeDetection()
-        //{
-        //    if (IncomingTagNumber <= threshold)
-        //    {
-        //        Console.WriteLine("State Change");
-        //    }
-
-        //}
 
     }
 }

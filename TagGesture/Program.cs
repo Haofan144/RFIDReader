@@ -184,8 +184,8 @@ namespace TagGesture
                 reader.ApplySettings(settings);
                 reader.TagsReported += OnTagsReported;
                 List<double> PowerRange = new List<double>();
-                AddTag tag30 = new AddTag();
-                tag30.Test();
+                //AddTag tag30 = new AddTag();
+                //tag30.Test();
                 //tag30.Test();
                 while (true)
                 {
@@ -227,11 +227,17 @@ namespace TagGesture
                     System.Console.WriteLine("Current Tx power is:" + settings.Antennas.GetAntenna(1).TxPowerInDbm);
                     System.Console.WriteLine("IncomingTagNumber30 is:" + IncomingTagNumber30);
                     TagList30.Add(IncomingTagNumber30);
-                    tag30.Count = IncomingTagNumber30;
+                    //tag30.Count = IncomingTagNumber30;
 
 
                     System.Console.WriteLine("IncomingTagNumber37 is:" + IncomingTagNumber37);
                     TagList37.Add(IncomingTagNumber37);
+                    int testcount = 9;
+                    if (testcount < 10)
+                    {
+                        client.ReadInput(IncomingTagNumber37);
+                        client.Send("00037");
+                    }
                     System.Console.WriteLine("IncomingTagNumber59 is:" + IncomingTagNumber59);
                     TagList59.Add(IncomingTagNumber59);
                     System.Console.WriteLine("IncomingTagNumber25 is:" + IncomingTagNumber25);
@@ -272,8 +278,7 @@ namespace TagGesture
                     TagList52.Add(IncomingTagNumber52);
                     System.Console.WriteLine("IncomingTagNumber58 is:" + IncomingTagNumber58);
                     TagList58.Add(IncomingTagNumber58);
-                    client.ReadInput(IncomingTagNumber37);
-                    client.Send();
+                   
 
 
 
